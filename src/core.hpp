@@ -9,4 +9,5 @@ namespace clk
     using ProcessId = std::uint32_t;
     using Payload = std::string;
     using Bytes = std::vector<uint8_t>;
+    using LogicalTime = std::uint64_t;
 }

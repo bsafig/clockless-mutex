@@ -8,6 +8,7 @@ namespace clk
     {
         ProcessId from;
         ProcessId to;
+        LogicalTime timestamp;
         Payload payload;
     };
 }

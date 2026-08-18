@@ -14,9 +14,9 @@ namespace clk
     // How unreliable should the network be?
     struct ChaosConfig
     {
-        double drop_prob = 0.1;
-        int min_delay_ms = 25;
-        int max_delay_ms = 1000;
+        double drop_prob = 0.0;
+        int min_delay_ms = 10;
+        int max_delay_ms = 300;
         unsigned seed = 1;
     };
 
