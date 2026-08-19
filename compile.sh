@@ -13,3 +13,9 @@ echo "== building cluster_sim =="
 "$CXX" $CXXFLAGS -pthread -I src -o cluster_sim src/cluster_sim.cpp
 echo "== running cluster_sim =="
 ./cluster_sim
+
+echo
+echo "== building mutex_sim =="
+"$CXX" $CXXFLAGS -pthread -I src -o mutex_sim src/mutex_sim.cpp
+echo "== running mutex_sim =="
+./mutex_sim

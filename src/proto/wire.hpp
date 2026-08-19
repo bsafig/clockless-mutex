@@ -37,12 +37,16 @@ namespace clk
         return v;
     }
 
+    // Wire layout:
+    //   from u32 | to u32 | timestamp u64 | type u8 | len u32 | payload[len]
+    //   offset 0        4              8       16        17        21
     inline Bytes encode(const message &m)
     {
         Bytes out;
         put_u32(out, m.from);
         put_u32(out, m.to);
         put_u64(out, m.timestamp);
+        out.push_back(static_cast<std::uint8_t>(m.type));
         put_u32(out, static_cast<std::uint32_t>(m.payload.size()));
         for (char c : m.payload)
         {
@@ -56,14 +60,15 @@ namespace clk
         std::uint32_t from = get_u32(in, 0);
         std::uint32_t to = get_u32(in, 4);
         LogicalTime ts = get_u64(in, 8);
-        std::uint32_t len = get_u32(in, 16);
+        MsgType type = static_cast<MsgType>(in[16]);
+        std::uint32_t len = get_u32(in, 17);
 
         std::string payload;
         for (std::uint32_t i = 0; i < len; ++i)
         {
-            payload.push_back(static_cast<char>(in[20 + i]));
+            payload.push_back(static_cast<char>(in[21 + i]));
         }
 
-        return message{from, to, ts, payload};
+        return message{from, to, ts, payload, type};
     }
 }

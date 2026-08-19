@@ -26,7 +26,10 @@ This builds and runs the wire-format tests and the cluster simulation.
       net/endpoint.hpp                a process: worker thread + send/recv
       net/chaos.hpp                   drop / delay / reorder decorator
       clock.hpp                       Lamport logical clock (IR1/IR2)
-      cluster_sim.cpp                 demo
+      order.hpp                       total order: Stamp = (timestamp, pid)
+      lamport_mutex.hpp               distributed mutual-exclusion algorithm
+      cluster_sim.cpp                 logical-clock demo
+      mutex_sim.cpp                   mutual-exclusion demo (reliable vs chaos)
     tests/
       wireTest.cpp                    round-trip tests for the wire format
 
@@ -35,7 +38,10 @@ This builds and runs the wire-format tests and the cluster simulation.
 - Phase 1 - message-passing network with fault injection. Done.
 - Phase 2 - Lamport logical clocks; the demo recovers send order from reordered
   delivery. Done.
-- Phase 3 - total ordering and distributed mutual exclusion. Planned.
+- Phase 3 - total ordering and distributed mutual exclusion; the demo has N
+  processes contend for a lock with zero violations over a reliable transport,
+  then deadlocks over the chaos transport, showing the algorithm depends on
+  reliable, in-order delivery. Done.
 
 ## Reference
 
