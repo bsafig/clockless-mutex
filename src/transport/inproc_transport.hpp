@@ -85,12 +85,6 @@ namespace clk
         std::vector<Inbox> inboxes_;
     };
 
-    // ---------------------------------------------------------------------
-    // InprocTransport: one process's view of the network. Implements the
-    // ITransport interface by forwarding to the shared Network.
-    //
-    // TODO(you): make this inherit from ITransport and implement the 3 overrides.
-    // ---------------------------------------------------------------------
     class InprocTransport : public ITransport
     {
     public:
